@@ -1,2 +1,26 @@
-<h1>Menu#index</h1>
-<p>Find me in app/views/menu/index.html.erb</p>
+<h1>Nha Hang Menu</h1>
+
+<div class="btn-group" role="group" aria-label="Basic example">
+	<% @sections.each do |section| %>
+	  <%= link_to section, menu_path(section: section), class: 'btn btn-secondary' %>
+	<% end %>
+</div>
+
+<% @food_items.in_groups_of(3) do |group| %>
+	<div class="row">
+		<% group.compact.each do |food_item| %>
+			<div class="col-sm-4">
+				<div class="card">
+				  <%= image_tag food_item.image_url_or_default, alt: food_item.name,class: "card-img-top"  %>
+				  <div class="card-block">
+				    <h4 class="card-title"><%= food_item.name %></h4>
+				    <p class="card-text"><%= food_item.description %></p>
+				  </div>
+				  <div class="card-block">
+				    <a href="#" class="card-link btn btn-danger">Other</a>
+				  </div>
+				</div>
+			</div>
+		<% end %>	
+	</div>
+<% end %>
