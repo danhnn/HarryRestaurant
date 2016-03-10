@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   
-  resources :food_items
+  resources :food_items do
+      # food_items/:food_item_id/orders/new
+      resources :orders
+  end
+
   get 'menu' => 'menu#index'
   get 'contact_us' => 'welcome#contact_us'
   # The priority is based upon order of creation: first created -> highest priority.
