@@ -20,7 +20,7 @@
 				<p class="card-text"><%= food_item.description %></p>
 			</div>
 			<div class="card-block">
-				<a href="#" class="card-link btn btn-danger">Order</a>
+				<%= link_to 'Order', new_food_item_order_path(food_item), class:"card-link btn btn-danger" %>
 			</div>
 		</div>
 	</div>
