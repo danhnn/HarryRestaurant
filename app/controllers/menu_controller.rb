@@ -1,6 +1,7 @@
 class MenuController < ApplicationController
   def index
-  	@sections = %w(Breakfast Lunch Dinner Supper)
-  	@food_items = FoodItem.by_section(params[:section])
+  	@sections = Section.all
+  	@section = Section.getSection params[:section_id]
+  	@food_items = FoodItem.by_section(@section,params[:order])
   end
 end

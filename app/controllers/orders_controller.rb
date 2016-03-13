@@ -11,17 +11,16 @@ class OrdersController < ApplicationController
 
 		if @order.save
 			flash[:success] = "Order submitted. Thank you!"
-			redirect_to menu_path
+			render 'done'
 		else
 			flash[:error] = "Error: #{@order.errors.full_messages.to_sentence}"
 			render 'new'
 		end
-
 	end
-
+	
 	private
 	def order_params
-		params.require(:order).permit(:name,:phone,:address)
+		params.require(:order).permit(:name,:phone,:address,:quantity)
 		
 	end
 end

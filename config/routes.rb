@@ -7,6 +7,8 @@ Rails.application.routes.draw do
 
   get 'menu' => 'menu#index'
   get 'contact_us' => 'welcome#contact_us'
+  get 'food_items/:food_item_id/orders/done/:id', to: 'orders#done', as: 'done_order'
+ 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

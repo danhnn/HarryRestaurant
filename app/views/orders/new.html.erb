@@ -24,6 +24,11 @@ The same as form_for food_item_orders_path(@food_item) do |f|
 			<%= f.text_field :address,class: 'form-control' %>
 		</fieldset>
 		
+		<fieldset class="form-group">
+			<%= f.label :quantity %>
+			<%= f.text_field :quantity,class: 'form-control' %>
+		</fieldset>
+
 		<%= f.submit "Submit Order",class: 'btn btn-primary' %>
 		<% end %>
 	</div>

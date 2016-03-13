@@ -1,9 +1,26 @@
 <h1>Nha Hang Menu</h1>
 
-<div class="btn-group" role="group" aria-label="Basic example">
-	<% @sections.each do |section| %>
-	<%= link_to section, menu_path(section: section), class: 'btn btn-secondary' %>
-	<% end %>
+<div class="row">
+	<div class="col-sm-6">
+		<div class="btn-group" role="group" aria-label="Basic example">
+			<% @sections.each do |section| %>
+			<%= link_to section.name, menu_path(section_id: section.id), class: 'btn btn-secondary' %>
+			<% end %>
+		</div>
+
+	</div>
+	<div class="col-sm-6">
+		<div class="dropdown">
+			<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				Alphabetical
+			</button>
+			<div class="dropdown-menu" aria-labelledby="dropdownMenu1">
+				<%= link_to 'Alphabetical', menu_path({ section_id: @section.id, order: 'name'}), class: "dropdown-item" %>
+				<%= link_to 'Price low to high', menu_path({ section_id: @section.id, order: 'price'}), class: "dropdown-item" %>
+				<%= link_to 'Price high to low', menu_path({ section_id: @section.id, order: 'price DESC'}), class: "dropdown-item" %>
+			</div>
+		</div>
+	</div>
 </div>
 
 <% @food_items.in_groups_of(3) do |group| %>
