@@ -30,10 +30,14 @@
 		<div class="card">
 			<%= image_tag food_item.image_url_or_default, alt: food_item.name,class: "card-img-top"  %>
 			<div class="card-block">
-				<h4 class="card-title">
-					<%= food_item.name %>
-					<span class="label label-default"><%= food_item.orders.size %></span>
-				</h4>
+				<%= link_to food_item do %>
+					<h4 class="card-title">
+						<%= food_item.name %>
+						<span class="label label-default"><%= food_item.orders.size %></span>
+					</h4>
+				<% end %>
+				<p class="card-text">Price: <%= food_item.price %> VND</p>
+				<p class="card-text">Views: <%= food_item.views %></p>
 				<p class="card-text"><%= food_item.description %></p>
 			</div>
 			<div class="card-block">

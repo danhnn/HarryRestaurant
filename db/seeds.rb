@@ -40,5 +40,6 @@ FoodNames.each.with_index do |value, index|
 		description: Faker::Lorem.paragraph(5),
 		price: Faker::Commerce.price,
 		section_id: section_id,
+		views: 0,
 		image_url: '')
 end

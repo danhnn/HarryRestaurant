@@ -1,29 +1,12 @@
-<p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @food_item.name %>
-</p>
+<div class="card">
+  <%= image_tag @food_item.image_url_or_default, alt: @food_item.name,class: "card-img-top"  %>
+  <div class="card-block">
+    <h4 class="card-title"> <%= @food_item.name %></h4>
+    <h3 class="card-title"> Price: <%= @food_item.price %></h3>
+    <h5 class="card-title"> Views: <%= @food_item.views %></h5>
+    <p class="card-text"><%= @food_item.description %></p>
+    <%= link_to 'Order', new_food_item_order_path(@food_item), class:"btn btn-danger" %>
+  </div>
+</div>
 
-<p>
-  <strong>Description:</strong>
-  <%= @food_item.description %>
-</p>
-
-<p>
-  <strong>Price:</strong>
-  <%= @food_item.price %>
-</p>
-
-<p>
-  <strong>Section:</strong>
-  <%= @food_item.section %>
-</p>
-
-<p>
-  <strong>Image url:</strong>
-  <%= @food_item.image_url %>
-</p>
-
-<%= link_to 'Edit', edit_food_item_path(@food_item) %> |
-<%= link_to 'Back', food_items_path %>

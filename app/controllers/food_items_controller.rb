@@ -10,6 +10,8 @@ class FoodItemsController < ApplicationController
   # GET /food_items/1
   # GET /food_items/1.json
   def show
+    @food_item.views =  @food_item.views.to_i + 1 
+    @food_item.save
   end
 
   # GET /food_items/new
