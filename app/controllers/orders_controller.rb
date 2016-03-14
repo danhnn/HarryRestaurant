@@ -8,16 +8,16 @@ class OrdersController < ApplicationController
 
 		@order = Order.new(order_params)
 		@order.food_item = @food_item
-
-		if @order.save
-			format.html { redirect_to food_item_order_path(@order), notice: 'Order item was successfully created.' }
-			format.json { render :show, status: :created, location: food_item_order_path(@order) }
-		else
+		respond_to do |format|
+			if @order.save
+			#redirect_to food_item_order_path(@order.id)
+			format.html { redirect_to food_item_order_path(id: @order.id), notice: 'Order item was successfully created.' }
+			format.json { render :show, status: :created, location: food_item_order_path(id: @order.id) }
+			else
 			flash[:error] = "Error: #{@order.errors.full_messages.to_sentence}"
 			render 'new'
+			end
 		end
-
-		raise "bbb"
 	end
 
 	def show
@@ -26,12 +26,16 @@ class OrdersController < ApplicationController
 
 		calculate_order_value()
 		order_finish_url = get_order_url
-		UserMailer.welcome_email(@order,order_finish_url).deliver_now
-		
+		UserMailer.welcome_email(@order,order_finish_url).deliver_now	
+		@order.send_message(@order.phone,"You have ordered #{@order.quantity} #{@food_item.name}! Thank you!")
+
 		flash[:success] = "Order submitted. Thank you!"
 	end
 
 
+	def done
+
+	end
 
 	private
 	def order_params
