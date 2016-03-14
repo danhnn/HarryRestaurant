@@ -36,6 +36,7 @@
 						<span class="label label-default"><%= food_item.orders.size %></span>
 					</h4>
 				<% end %>
+				<p>Rating: <%=  food_item.show_rating %>   <%= image_tag asset_path "star-on.png" %></p>
 				<p class="card-text">Price: <%= food_item.price %> VND</p>
 				<p class="card-text">Views: <%= food_item.views %></p>
 				<p class="card-text"><%= food_item.description %></p>

@@ -5,6 +5,9 @@
     <h4 class="card-title"> <%= @food_item.name %></h4>
     <h3 class="card-title"> Price: <%= @food_item.price %></h3>
     <h5 class="card-title"> Views: <%= @food_item.views %></h5>
+    <div>
+      <span>Rating: <%=  @food_item.show_rating %>   <%= image_tag asset_path "star-on.png" %></span>
+    </div>
     <p class="card-text"><%= @food_item.description %></p>
     <%= link_to 'Order', new_food_item_order_path(@food_item), class:"btn btn-danger" %>
   </div>

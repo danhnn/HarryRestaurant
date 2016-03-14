@@ -156,6 +156,7 @@ DEPENDENCIES
   faker
   jbuilder (~> 2.0)
   jquery-rails
+  mail
   pg (~> 0.15)
   rails (= 4.2.5.1)
   sass-rails (~> 5.0)

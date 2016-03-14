@@ -22,5 +22,8 @@ class FoodItem < ActiveRecord::Base
 		food_items.order(order_by)
 	end
 
+	def show_rating
+		value = comments.size == 0 ? 0 : (comments.sum(:rating) / comments.size).round(3)
+	end
 end
 
