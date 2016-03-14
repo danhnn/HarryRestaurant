@@ -1,5 +1,5 @@
 class FoodItem < ActiveRecord::Base
-	paginates_per 7
+	paginates_per 5
 	has_many :orders, dependent: :destroy
 	has_many :comments, dependent: :destroy
 	belongs_to :section

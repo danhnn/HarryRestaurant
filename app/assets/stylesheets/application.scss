@@ -1,2 +1,62 @@
 // Custom bootstrap variables must be set or import before bootstrap itself.
 @import "bootstrap";
+@import "menu.scss";
+@import "welcome.scss";
+@import "food_items.scss";
+@import "orders.scss";
+
+body{
+	background-image: url("bg.jpg"); 
+}
+
+.align-text-center{
+	 text-align: center;
+}
+
+.inner-div-center {
+    width: 50%;
+    margin: 0 auto; 
+}
+
+.nav-top-div{
+	width: 100%;
+	height: 100px;
+	background: white;
+}
+
+.nav-top-div img{
+ 	height: 80px;
+    width: auto;
+}
+
+.logo-div{
+	padding-top:10px;
+ 	width: 400px;
+    margin: auto;
+    position:relative;
+}
+
+.to-the-right{ /*this will align the text to the right*/
+  text-align:right;
+}
+
+.harry-text{
+	font-family: "BentonSans",Helvetica,Arial,sans-serif;
+	font-weight: 600;
+    font-style: normal;
+    font-size: 1.5rem;
+    letter-spacing: 0.125rem;
+    line-height: 3rem;
+      text-decoration:none;
+      color:black;
+      margin-left: 10px;
+}
+
+.nav-top-div a:hover{
+	     text-decoration:none;
+  color:black;
+}
+
+.parent-width {
+   max-width: 100%;
+}

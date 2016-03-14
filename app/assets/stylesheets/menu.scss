@@ -1,3 +1,64 @@
 // Place all the styles related to the menu controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.section-div{
+padding:20px;
+margin-bottom:10px;
+}
+
+.food-item-row{
+	background-color:white;
+	padding:20px;
+}
+
+
+.pagination a, .pagination span.current, .pagination span.gap {
+    float: left;
+    padding: 0 14px;
+    line-height: 38px;
+    text-decoration: none;
+    background-color: white;
+    border: 1px solid #DDD;
+    border-left-width: 0;
+}
+
+.pagination {
+    border-left: 1px solid #ddd;
+    .first{
+        padding : 0;
+        float: none;
+        border: none;
+    }
+    .prev {
+        padding : 0;
+        float: none;
+        border: none;
+    }
+    .page{
+        padding : 0;
+        float: none;
+        border: none;
+    }
+    .next{
+        padding : 0;
+        float: none;
+        border: none;
+    }
+    .last{
+        padding : 0;
+        float: none;
+        border: none;
+    }
+}
+
+.food-item-row .price-text{
+	color:white;
+	background-color:#0ac7fc;
+	padding:3px;
+	font-size:1.1em;
+}
+
+.food-item-row a:hover{
+	 text-decoration:none;
+}

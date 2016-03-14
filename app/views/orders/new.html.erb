@@ -1,7 +1,7 @@
-<h1>
-	<small>Order for</small> <%= @food_item.name %>
-</h1>
-
+<div class="row order-div">
+	<h1 style="color: #ed7b09;">
+		<small>Order Info</small>
+	</h1>
 <!--
 The same as form_for food_item_orders_path(@food_item) do |f|
 -->
@@ -42,4 +42,18 @@ The same as form_for food_item_orders_path(@food_item) do |f|
 		<%= f.submit "Submit Order",class: 'btn btn-primary' %>
 		<% end %>
 	</div>
+	<div class="col-sm-7">
+		<div class="row food-item-row">
+			
+				<h4 class="card-title title-text" style="color: #0184bc">
+					<%= @food_item.name %>
+				</h4>
+				<p><span style="color: #ef9802;font-size: 1.2em;">Rating:</span> <%=  @food_item.show_rating %>   <%= image_tag asset_path "star-on.png" %></p>
+				<p class="card-text price-text" >Price: <%= @food_item.price %> VND</p>
+				<p class="card-text"><%= @food_item.description %></p>
+				<%= image_tag @food_item.image_url_or_default, alt: @food_item.name,class: "parent-width"  %>
+		
+		</div>
+	</div>
+</div>
 </div>

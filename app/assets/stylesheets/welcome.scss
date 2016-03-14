@@ -1,3 +1,48 @@
 // Place all the styles related to the welcome controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.jumbotron{
+	background-color: rgba(244,247,248,0.97);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -150px;
+    margin-left: -300px;
+    width: 600px;
+    height: 300px;
+}
+
+.inner-jumb{
+    display: block;
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    right: 14px;
+    bottom: 14px;
+	 border: 1px solid #c8c8c1;
+}
+
+.inner-jumb h1{
+	font-family: "BentonSans",Helvetica,Arial,sans-serif;
+	font-weight: 600;
+    font-style: normal;
+    font-size: 2.5rem;
+    letter-spacing: 0.125rem;
+    line-height: 3rem;
+}
+
+.inner-jumb h4{
+	font-family: "BentonSans",Helvetica,Arial,sans-serif;
+	font-weight: 100;
+    font-style: normal;
+}
+
+.button-group{
+	padding-left:40px;	
+}
+
+.contact-us{
+	margin-top:100px;
+	padding:30px;
+	background-color:white;
+}
