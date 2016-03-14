@@ -10,12 +10,15 @@ class OrdersController < ApplicationController
 		@order.food_item = @food_item
 		respond_to do |format|
 			if @order.save
-			#redirect_to food_item_order_path(@order.id)
-			format.html { redirect_to food_item_order_path(id: @order.id), notice: 'Order item was successfully created.' }
-			format.json { render :show, status: :created, location: food_item_order_path(id: @order.id) }
+				order_finish_url = get_order_url @order.id
+				UserMailer.welcome_email(@order,order_finish_url).deliver_later	
+				@order.send_message(@order.phone,"You have ordered #{@order.quantity} #{@food_item.name}! Thank you!")
+
+				format.html { redirect_to food_item_order_path(id: @order.id), notice: 'Order item was successfully created.' }
+				format.json { render :show, status: :created, location: food_item_order_path(id: @order.id) }
 			else
-			flash[:error] = "Error: #{@order.errors.full_messages.to_sentence}"
-			render 'new'
+				flash[:error] = "Error: #{@order.errors.full_messages.to_sentence}"
+				render 'new'
 			end
 		end
 	end
@@ -25,10 +28,6 @@ class OrdersController < ApplicationController
 		@order = Order.find params[:id]
 
 		calculate_order_value()
-		order_finish_url = get_order_url
-		UserMailer.welcome_email(@order,order_finish_url).deliver_now	
-		@order.send_message(@order.phone,"You have ordered #{@order.quantity} #{@food_item.name}! Thank you!")
-
 		flash[:success] = "Order submitted. Thank you!"
 	end
 
@@ -53,7 +52,7 @@ class OrdersController < ApplicationController
 		end
 	end
 
-	def get_order_url
-		value = url_for :controller => 'orders', :action => 'show', :id => params[:id]
+	def get_order_url(order_id)
+		value = url_for :controller => 'orders', :action => 'show', :id => order_id
 	end
 end

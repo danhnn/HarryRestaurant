@@ -1,4 +1,5 @@
 class FoodItem < ActiveRecord::Base
+	paginates_per 7
 	has_many :orders, dependent: :destroy
 	has_many :comments, dependent: :destroy
 	belongs_to :section
@@ -11,7 +12,7 @@ class FoodItem < ActiveRecord::Base
 		end
 	end
 
-	def self.by_section(section,order_by)
+	def self.by_section(section,order_by,page)
 		food_items = nil	
 		if section.name == 'All' 
 			food_items = FoodItem.all
@@ -19,7 +20,7 @@ class FoodItem < ActiveRecord::Base
 			food_items = where(section_id: section.id)
 		end
 
-		food_items.order(order_by)
+		food_items.order(order_by).page page
 	end
 
 	def show_rating
