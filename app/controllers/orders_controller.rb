@@ -8,19 +8,21 @@ class OrdersController < ApplicationController
 
 		@order = Order.new(order_params)
 		@order.food_item = @food_item
-		respond_to do |format|
-			if @order.save
+		
+		if @order.save
+			respond_to do |format|
 				order_finish_url = get_order_url @order.id
 				UserMailer.welcome_email(@order,order_finish_url).deliver_later	
-				@order.send_message(@order.phone,"You have ordered #{@order.quantity} #{@food_item.name}! Thank you!")
+				@order.send_message(@order.phone,"You have ordered #{@order.quantity} #{@food_item.name} from Harry Nguyen Restaurant! Thank you!")
 
 				format.html { redirect_to food_item_order_path(id: @order.id), notice: 'Order item was successfully created.' }
 				format.json { render :show, status: :created, location: food_item_order_path(id: @order.id) }
-			else
-				flash[:error] = "Error: #{@order.errors.full_messages.to_sentence}"
-				render 'new'
 			end
+		else
+			flash[:error] = "Error: #{@order.errors.full_messages.to_sentence}"
+			render 'new'
 		end
+		
 	end
 
 	def show

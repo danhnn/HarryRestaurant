@@ -1,6 +1,6 @@
 class Order < ActiveRecord::Base
   belongs_to :food_item
-  validates :food_item, :name, presence: true
+  validates :food_item, :name,:phone,:address,:email,:quantity,:coupon_code, presence: true
 
   def send_message(phone_number, alert_message)
 
