@@ -12,8 +12,10 @@ class OrdersController < ApplicationController
 		if @order.save
 			respond_to do |format|
 				order_finish_url = get_order_url @order.id
-				UserMailer.welcome_email(@order,order_finish_url).deliver_later	
-				@order.send_message(@order.phone,"You have ordered #{@order.quantity} #{@food_item.name} from Harry Nguyen Restaurant! Thank you!")
+				if Rails.env.development?
+					UserMailer.welcome_email(@order,order_finish_url).deliver_later	
+				end
+				@order.send_message(@order.phone,"#{@order.name} have ordered #{@order.quantity} #{@food_item.name} from Harry Nguyen Restaurant! Thank you!")
 
 				format.html { redirect_to food_item_order_path(id: @order.id), notice: 'Order item was successfully created.' }
 				format.json { render :show, status: :created, location: food_item_order_path(id: @order.id) }
