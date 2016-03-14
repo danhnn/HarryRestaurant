@@ -21,7 +21,6 @@ lunch = Section.create(name: 'Lunch')
 dinner = Section.create(name: 'Dinner')
 drinks = Section.create(name: 'Drinks')
 
-FoodItem.destroy_all
 section_id = 0
 
 FoodNames.each.with_index do |value, index|
@@ -42,4 +41,9 @@ FoodNames.each.with_index do |value, index|
 		section_id: section_id,
 		views: 0,
 		image_url: '')
+end
+
+FoodItem.all.each do |food|
+  food.comments.create(rating: Faker::Number.between(1, 5), title: Faker::Lorem.sentence, body: Faker::Lorem.paragraph(2))
+  food.comments.create(rating: Faker::Number.between(1, 5), title: Faker::Lorem.sentence, body: Faker::Lorem.paragraph(2))
 end

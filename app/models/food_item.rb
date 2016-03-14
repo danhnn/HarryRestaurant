@@ -1,6 +1,8 @@
 class FoodItem < ActiveRecord::Base
 	has_many :orders, dependent: :destroy
+	has_many :comments, dependent: :destroy
 	belongs_to :section
+	
 	def image_url_or_default
 		if image_url.present?
 			image_url

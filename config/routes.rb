@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
   
+  resources :comments
   resources :food_items do
       # food_items/:food_item_id/orders/new
       resources :orders
+      resources :comments
   end
 
   get 'menu' => 'menu#index'
@@ -44,8 +46,7 @@ Rails.application.routes.draw do
 
   # Example resource route with more complex sub-resources:
   #   resources :products do
-  #     resources :comments
-  #     resources :sales do
+  #     #     resources :sales do
   #       get 'recent', on: :collection
   #     end
   #   end

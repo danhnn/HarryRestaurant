@@ -10,8 +10,8 @@ class FoodItemsController < ApplicationController
   # GET /food_items/1
   # GET /food_items/1.json
   def show
-    @food_item.views =  @food_item.views.to_i + 1 
-    @food_item.save
+    increaseViewCount()
+    @comments = @food_item.comments
   end
 
   # GET /food_items/new
@@ -21,6 +21,11 @@ class FoodItemsController < ApplicationController
 
   # GET /food_items/1/edit
   def edit
+  end
+
+  def increaseViewCount
+    @food_item.views =  @food_item.views.to_i + 1 
+    @food_item.save
   end
 
   # POST /food_items

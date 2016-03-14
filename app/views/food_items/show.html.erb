@@ -10,3 +10,46 @@
   </div>
 </div>
 
+<div class="row comment-show">
+  <% @comments.each do |comment| %>
+
+  <div class="card">
+    <div class="card-block">
+      <!-- Render Start here-->
+      <div> 
+        <% if comment.rating.present? %>
+          <% comment.rating.times do %>
+            <%= image_tag asset_path "star-on.png" %>
+          <% end %>
+        <% end %>
+      </div>
+      <h3 class="card-title"> <%= comment.title %></h3>
+      <p class="card-text"><%= comment.body %></p>
+    </div>
+  </div>
+
+  <% end %>
+</div>
+
+<div class="row comment-form">
+  <%= form_for [@food_item,Comment.new] do |f| %>
+  <fieldset class="form-group">
+    <span>Rating:</span> 
+    <%= f.select :rating, [5,4,3,2,1]%>
+    <%= image_tag asset_path "star-on.png" %>
+  </fieldset>
+
+  <fieldset class="form-group">
+    <%= f.label :title %>
+    <%= f.text_field :title,class: 'form-control' %>
+  </fieldset>
+
+  <fieldset class="form-group">
+    <%= f.label :body %>
+    <%= f.text_field :body,class: 'form-control' %>
+  </fieldset>
+
+  <%= f.submit "Send",class: 'btn btn-primary' %>
+  <% end %>
+</div>
+
