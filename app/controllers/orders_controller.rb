@@ -11,8 +11,8 @@ class OrdersController < ApplicationController
 		respond_to do |format|
 			if @order.save
 				order_finish_url = get_order_url @order.id
-				UserMailer.welcome_email(@order,order_finish_url).deliver_later	
-				#@order.send_message(@order.phone,"You have ordered #{@order.quantity} #{@food_item.name}! Thank you!")
+				#UserMailer.welcome_email(@order,order_finish_url).deliver_later	
+				@order.send_message(@order.phone,"You have ordered #{@order.quantity} #{@food_item.name}! Thank you!")
 
 				format.html { redirect_to food_item_order_path(id: @order.id), notice: 'Order item was successfully created.' }
 				format.json { render :show, status: :created, location: food_item_order_path(id: @order.id) }
