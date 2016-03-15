@@ -20,7 +20,12 @@ class OrdersController < ApplicationController
 				flash[:success] = "Order submitted but some problem with Gmail Authentication. Thank you!"
 				end
 
+				begin
 				@order.send_message(@order.phone,"#{@order.name} have ordered #{@order.quantity} #{@food_item.name} from Harry Nguyen Restaurant!")
+				rescue
+
+				end
+				
 				format.html { redirect_to food_item_order_path(id: @order.id), notice: 'Order item was successfully created.' }
 				format.json { render :show, status: :created, location: food_item_order_path(id: @order.id) }
 			end
