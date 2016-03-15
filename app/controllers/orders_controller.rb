@@ -12,11 +12,15 @@ class OrdersController < ApplicationController
 		if @order.save
 			respond_to do |format|
 				order_finish_url = get_order_url @order.id
-				if Rails.env.development?
-					UserMailer.welcome_email(@order,order_finish_url).deliver_later	
+				
+				begin
+				UserMailer.welcome_email(@order,order_finish_url).deliver_later	
+				flash[:success] = "Order submitted. Thank you!"
+				rescue
+				flash[:success] = "Order submitted but some problem with Gmail Authentication. Thank you!"
 				end
-				@order.send_message(@order.phone,"#{@order.name} have ordered #{@order.quantity} #{@food_item.name} from Harry Nguyen Restaurant! Thank you!")
 
+				@order.send_message(@order.phone,"#{@order.name} have ordered #{@order.quantity} #{@food_item.name} from Harry Nguyen Restaurant!")
 				format.html { redirect_to food_item_order_path(id: @order.id), notice: 'Order item was successfully created.' }
 				format.json { render :show, status: :created, location: food_item_order_path(id: @order.id) }
 			end
@@ -32,7 +36,6 @@ class OrdersController < ApplicationController
 		@order = Order.find params[:id]
 
 		calculate_order_value()
-		flash[:success] = "Order submitted. Thank you!"
 	end
 
 
